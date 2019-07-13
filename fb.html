@@ -80,8 +80,8 @@
   // Here we run a very simple test of the Graph API after login is
   // successful.  See statusChangeCallback() for when this call is made.
   function start() {    
-    //FB.api(連線網址, 回呼函式(結果));
-    FB.api('/me', function(response) {    
+    //呼叫 Graph API: FB.api(連線網址, 回呼函式(結果));
+    FB.api('/me?field=id,name,email', function(response) {    
         console.log(response);  
         let main = document.querySelector("#main");
         main.innerHTML = response.name;
