@@ -35,7 +35,7 @@
   function login(){
       FB.login(function(response){
         statusChangeCallback(response);
-      }, {scope: "email"},{scope: "data"});
+      }, {scope: "email"}, {scope: "birthday"});
   }
 
   window.fbAsyncInit = function() {
