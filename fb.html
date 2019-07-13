@@ -20,9 +20,9 @@
     main.style.display="none";
 
     if (response.status === 'connected') { //使用者已授權, 開始應用程式
-      // Logged into your app and Facebook.
-     
+      // Logged into your app and Facebook.     
     main.style.display="block";
+    start();
     } else { //使用者未授權, 鼓勵使用者授權
       // The person is not logged into your app or we are unable to tell.
      welcome.style.display="block";
@@ -79,13 +79,13 @@
 
   // Here we run a very simple test of the Graph API after login is
   // successful.  See statusChangeCallback() for when this call is made.
-  function testAPI() {
-    console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', function(response) {
-      console.log('Successful login for: ' + response.name);
-      document.getElementById('status').innerHTML =
-        'Thanks for logging in, ' + response.name + '!';
+  function start() {    
+    //FB.api(連線網址, 回呼函式(結果));
+    FB.api('https://graph.facebook.com/10220271199954672', function(response) {    
+        console.log(response);  
     });
+    //FB.api('/me', function(response) {      
+    //});
   }
 </script>
 
