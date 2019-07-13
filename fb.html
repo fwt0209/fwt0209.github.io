@@ -14,10 +14,15 @@
     // app know the current login status of the person.
     // Full docs on the response object can be found in the documentation
     // for FB.getLoginStatus().
-    if (response.status === 'connected') {
+    let welcome = document.querySelector("#welcome");
+    let main = document.querySelector("#main");
+    welcome.style.display="none";
+    main.style.display="none";
+    
+    if (response.status === 'connected') { //使用者已授權, 開始應用程式
       // Logged into your app and Facebook.
       testAPI();
-    } else {
+    } else { //使用者未授權, 鼓勵使用者授權
       // The person is not logged into your app or we are unable to tell.
       document.getElementById('status').innerHTML = 'Please log ' +
         'into this app.';
@@ -34,6 +39,7 @@
   }
 
   window.fbAsyncInit = function() {
+    //初始化 Facebook 套件
     FB.init({
       appId      : '326049715000735',
       cookie     : true,  // enable cookies to allow the server to access 
@@ -53,7 +59,8 @@
     //    your app or not.
     //
     // These three cases are handled in the callback function.
-
+    
+    //偵測使用者是否已經授權
     FB.getLoginStatus(function(response) {
       statusChangeCallback(response);
     });
@@ -61,6 +68,7 @@
   };
 
   // Load the SDK asynchronously
+  //載入 Facebook Javascript SDK, 載入完畢之後固定呼叫 window.fbAsyncInit()
   (function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
@@ -86,11 +94,13 @@
   the JavaScript SDK to present a graphical Login button that triggers
   the FB.login() function when clicked.
 -->
+<h3>Facebook Login</h3>
+<div id="welcome" style="display: none">
+    <button>Fackbook Login</button>
+</div>
 
-<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-</fb:login-button>
-
-<div id="status">
+<div id="main" style="display: none">
+    Hello Friend
 </div>
 
 </body>
