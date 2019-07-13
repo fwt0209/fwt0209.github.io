@@ -81,11 +81,12 @@
   // successful.  See statusChangeCallback() for when this call is made.
   function start() {    
     //FB.api(連線網址, 回呼函式(結果));
-    FB.api('https://graph.facebook.com/10220271199954672', function(response) {    
+    FB.api('/me', function(response) {    
         console.log(response);  
+        let main = document.querySelector("#main");
+        main.innerHTML = response.name;
     });
-    //FB.api('/me', function(response) {      
-    //});
+   
   }
 </script>
 
