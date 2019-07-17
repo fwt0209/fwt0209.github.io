@@ -82,6 +82,7 @@
   function start() {    
     //呼叫 Graph API: FB.api(連線網址, 回呼函式(結果));
     //抓使用者資料
+  /*
     FB.api('/me?fields=id,name,email,gender,birthday', function(response) {    
         console.log(response);  
         let main = document.querySelector("#main");
@@ -91,7 +92,7 @@
    FB.api('/me/feed', function(response) {
       console.log(response);
    });
-
+  */
 
    //抓使用者管理的粉絲專業
    FB.api('/me/accounts', function(response) {
