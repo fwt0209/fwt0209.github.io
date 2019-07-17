@@ -35,7 +35,7 @@
   function login(){
       FB.login(function(response){
         statusChangeCallback(response);
-      }, {scope: "email,user_friends"});
+      }, {scope: "email,user_gender,user_birthday"});
   }
 
   window.fbAsyncInit = function() {
@@ -81,10 +81,10 @@
   // successful.  See statusChangeCallback() for when this call is made.
   function start() {    
     //呼叫 Graph API: FB.api(連線網址, 回呼函式(結果));
-    FB.api('/me?fields=id,name,email', function(response) {    
+    FB.api('/me?fields=id,name,email,gender,birthday', function(response) {    
         console.log(response);  
         let main = document.querySelector("#main");
-        main.innerHTML = response.name+"<img src='https://graph.facebook.com/"+response.id+"/picture' />";
+        main.innerHTML = response.name+"<img src='https://graph.facebook.com/"+response.id+"/picture?type=large' />";
     });
    
   }
