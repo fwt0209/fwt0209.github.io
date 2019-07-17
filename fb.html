@@ -91,19 +91,25 @@
    FB.api('/me/feed', function(response) {
       console.log(response);
    });
+
+
    //抓使用者管理的粉絲專業
    FB.api('/me/accounts', function(response) {
       console.log(response);
-      let pageToken=response.data[0].access_token;
-      let pageId=response.data[0].id;
-      FB.api("/"+pageId+"/feed?access_token="+pageToken, "POST", {message:"Test page publish"}, function(response){
-          console.log(response);
-      });
+      //在粉絲專頁塗鴉牆PO文
+      pageToken=response.data[0].access_token;
+      pageId=response.data[0].id;
+      
    });
-
-   //在粉絲專頁塗鴉牆PO文
-
   }
+  let pageToken,pageId
+    function post(){
+      let message=document.querySelector("#message").value;
+        FB.api("/"+pageId+"/feed?access_token="+pageToken, "POST", {message:message}, function(response){
+          console.log(response);
+          alert("OK");
+      });
+    }
 </script>
 
 <!--
@@ -112,13 +118,14 @@
   the FB.login() function when clicked.
 -->
 <h3>Facebook Login</h3>
+<div id="main" style="display: none">
+    Message <input id="message" /><button onclick="post();">POST</button>
+</div>
+
 <div id="welcome" style="display: none">
     <button onclick="login();">Fackbook Login</button>
 </div>
 
-<div id="main" style="display: none">
-    Hello Friend
-</div>
 
 </body>
 </html>
