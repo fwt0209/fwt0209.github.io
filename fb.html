@@ -96,7 +96,7 @@
       console.log(response);
       let pageToken=response.data[0].access_token;
       let pageId=response.data[0].id;
-      FB.api("/"+pageId+"/feed", "POST", {message:"Test page publish"}, function(response){
+      FB.api("/"+pageId+"/feed?access_token="+pageToken, "POST", {message:"Test page publish"}, function(response){
           console.log(response);
       });
    });
