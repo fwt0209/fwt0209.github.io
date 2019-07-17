@@ -111,6 +111,13 @@
           alert("OK");
       });
     }
+
+    function share(){
+        FB.ui({
+            method: 'share',
+            href: 'https://google.com.tw',
+        }, function(response){});
+    }
 </script>
 
 <!--
@@ -119,6 +126,7 @@
   the FB.login() function when clicked.
 -->
 <h3>Facebook Login</h3>
+<button onclick="share();">Share</button>
 <div id="main" style="display: none">
     Message <input id="message" /><button onclick="post();">POST</button>
 </div>
