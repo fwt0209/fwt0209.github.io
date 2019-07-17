@@ -35,7 +35,7 @@
   function login(){
       FB.login(function(response){
         statusChangeCallback(response);
-      }, {scope: "email,user_gender,user_birthday,user_posts,manage_pages "});
+      }, {scope: "email,user_gender,user_birthday,user_posts,manage_pages,publish_pages"});
   }
 
   window.fbAsyncInit = function() {
@@ -94,7 +94,15 @@
    //抓使用者管理的粉絲專業
    FB.api('/me/accounts', function(response) {
       console.log(response);
+      let pageToken=response.data[0].access_token;
+      let pageId=response.data[0].id;
+      FB.api("/"+pageId+"/feed", "POST", {message:"Test page publish"}, function(response){
+          console.log(response);
+      })
    });
+
+   //在粉絲專頁塗鴉牆PO文
+
   }
 </script>
 
