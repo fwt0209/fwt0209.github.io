@@ -35,7 +35,7 @@
   function login(){
       FB.login(function(response){
         statusChangeCallback(response);
-      }, {scope: "email,user_gender,user_birthday,user_posts"});
+      }, {scope: "email,user_gender,user_birthday,user_posts,manage_pages "});
   }
 
   window.fbAsyncInit = function() {
@@ -89,6 +89,10 @@
     });
    //抓使用者塗鴉牆
    FB.api('/me/feed', function(response) {
+      console.log(response);
+   });
+   //抓使用者管理的粉絲專業
+   FB.api('/me/accounts', function(response) {
       console.log(response);
    });
   }
