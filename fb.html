@@ -100,10 +100,11 @@
       //在粉絲專頁塗鴉牆PO文
       pageToken=response.data[0].access_token;
       pageId=response.data[0].id;
-      
+      console.log(pageToken,pageId);
+      let pageToken,pageId
    });
   }
-  let pageToken,pageId
+  //let pageToken,pageId
     function post(){
       let message=document.querySelector("#message").value;
         FB.api("/"+pageId+"/feed?access_token="+pageToken, "POST", {message:message}, function(response){
