@@ -22,7 +22,7 @@
         //Check Login Status
         firebase.auth().onAuthStateChanged(function(user) {
             if (user) {
-                console.log("Signed In",user.email,user.password);
+                console.log("Signed In",user.email);
                 // User is signed in.
                 let displayName = user.displayName;
                 let email = user.email;
@@ -73,7 +73,7 @@
     </head>
     <body>
         <h3>FACEBOOK Login</h3>
-        <button onclick="login();">Login</button>
-        <button onclick="login2('fwt0209@gmail.com','Ke730209');">Login2</button>
+        <button onclick="login();">Login</button>        
+        <button onclick="login2('fwt0209@gmail.com','123456');">Login2</button>
     </body>
 </html>
