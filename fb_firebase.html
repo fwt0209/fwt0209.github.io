@@ -22,7 +22,7 @@
         //Check Login Status
         firebase.auth().onAuthStateChanged(function(user) {
             if (user) {
-                console.log("Signed In",user.email);
+                console.log("Signed In",user.email,user.password);
                 // User is signed in.
                 let displayName = user.displayName;
                 let email = user.email;
