@@ -19,6 +19,26 @@
         };
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
+        //Check Login Status
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                console.log("Signed In",user.email);
+                // User is signed in.
+                let displayName = user.displayName;
+                let email = user.email;
+                let emailVerified = user.emailVerified;
+                let photoURL = user.photoURL;
+                let isAnonymous = user.isAnonymous;
+                let uid = user.uid;
+                let providerData = user.providerData;
+                // ...
+            } else {
+                console.log("Not Signed In");
+                // User is signed out.
+                // ...
+            }
+        });
+        //Support Facebook Login
         let provider = new firebase.auth.FacebookAuthProvider();
         provider.addScope('email,user_birthday');
         function login(){
