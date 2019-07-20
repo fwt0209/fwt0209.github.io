@@ -61,10 +61,19 @@
                 // ...
             });
         };
+        function login2(email,password){
+            firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // ...
+            });
+        };
         </script>   
     </head>
     <body>
         <h3>FACEBOOK Login</h3>
         <button onclick="login();">Login</button>
+        <button onclick="login2('fwt0209@gmail.com','Ke730209');">Login2</button>
     </body>
 </html>
