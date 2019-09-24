@@ -35,7 +35,7 @@
   function login(){
       FB.login(function(response){
         statusChangeCallback(response);
-      }, {scope: "email,user_gender,user_birthday,user_posts"});
+      }, {scope: "email,user_gender,user_birthday,user_posts,user_checkins"});
   }
 
   window.fbAsyncInit = function() {
@@ -82,8 +82,8 @@
   function start() {    
     //呼叫 Graph API: FB.api(連線網址, 回呼函式(結果));
     //抓使用者資料
-  /*
-    FB.api('/me?fields=id,name,email,gender,birthday', function(response) {    
+  
+    FB.api('/me?fields=id,name,email,gender,birthday,posts{story,place}', function(response) {    
         console.log(response);  
         let main = document.querySelector("#main");
         main.innerHTML = response.name+"<img src='https://graph.facebook.com/"+response.id+"/picture?type=large' />";
@@ -92,8 +92,8 @@
    FB.api('/me/feed', function(response) {
       console.log(response);
    });
-  */
-
+  
+  /*
    //抓使用者管理的粉絲專業
    FB.api('/me/accounts', function(response) {
       console.log(response);
@@ -101,7 +101,7 @@
       pageToken=response.data[0].access_token;
       pageId=response.data[0].id;
       console.log(pageToken,pageId);      
-   });
+   });*/
   }
   let pageToken,pageId
     function post(){
