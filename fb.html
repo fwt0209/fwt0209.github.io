@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Facebook Login JavaScript Example</title>
+<title>Facebook 登入範例</title>
 <meta charset="UTF-8">
 </head>
 <body>
@@ -35,7 +35,7 @@
   function login(){
       FB.login(function(response){
         statusChangeCallback(response);
-      }, {scope: "email"});
+      }, {scope: "email,user_gender,user_birthday,user_posts,manage_pages,publish_pages"});
   }
 
   window.fbAsyncInit = function() {
@@ -81,13 +81,43 @@
   // successful.  See statusChangeCallback() for when this call is made.
   function start() {    
     //呼叫 Graph API: FB.api(連線網址, 回呼函式(結果));
-    FB.api('/me?fieldS=id,name,email', function(response) {    
+    //抓使用者資料
+  /*
+    FB.api('/me?fields=id,name,email,gender,birthday', function(response) {    
         console.log(response);  
         let main = document.querySelector("#main");
-        main.innerHTML = response.name;
+        main.innerHTML = response.name+"<img src='https://graph.facebook.com/"+response.id+"/picture?type=large' />";
     });
-   
+   //抓使用者塗鴉牆
+   FB.api('/me/feed', function(response) {
+      console.log(response);
+   });
+  */
+
+   //抓使用者管理的粉絲專業
+   FB.api('/me/accounts', function(response) {
+      console.log(response);
+      //在粉絲專頁塗鴉牆PO文
+      pageToken=response.data[0].access_token;
+      pageId=response.data[0].id;
+      console.log(pageToken,pageId);      
+   });
   }
+  let pageToken,pageId
+    function post(){
+      let message=document.querySelector("#message").value;
+        FB.api("/"+pageId+"/feed?access_token="+pageToken, "POST", {message:message}, function(response){
+          console.log(response);
+          alert("OK");
+      });
+    }
+
+    function share(){
+        FB.ui({
+            method: 'share',
+            href: 'https://google.com.tw',
+        }, function(response){});
+    }
 </script>
 
 <!--
@@ -96,13 +126,15 @@
   the FB.login() function when clicked.
 -->
 <h3>Facebook Login</h3>
+<button onclick="share();">Share</button>
+<div id="main" style="display: none">
+    Message <input id="message" /><button onclick="post();">POST</button>
+</div>
+
 <div id="welcome" style="display: none">
     <button onclick="login();">Fackbook Login</button>
 </div>
 
-<div id="main" style="display: none">
-    Hello Friend
-</div>
 
 </body>
 </html>
