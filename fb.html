@@ -35,7 +35,7 @@
   function login(){
       FB.login(function(response){
         statusChangeCallback(response);
-      }, {scope: "email,user_gender,user_birthday,user_posts"});
+      }, {scope: "email,user_gender,user_birthday,user_posts,user_checkins"});
   }
 
   window.fbAsyncInit = function() {
